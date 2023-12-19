@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BankSimulation.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace BankSimulation.DataAccess.Data
         }
 
         //Add DBSets here
-
+        public DbSet<User> Users { get; set; }
+        public DbSet<Transaction> Transactions{ get; set; }
     }
 }
