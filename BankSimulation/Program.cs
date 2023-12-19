@@ -1,11 +1,19 @@
+using BankSimulation.DataAccess.Data;
+using BankSimulation.DataAccess.Repository;
+using BankSimulation.DataAccess.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 if (builder.Environment.IsDevelopment())
 {
-
     builder.Services.AddRazorPages().AddRazorRuntimeCompilation(); //On-the-fly compilation of Razor views
 }
 var app = builder.Build();

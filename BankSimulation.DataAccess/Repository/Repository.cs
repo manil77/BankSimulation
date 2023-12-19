@@ -12,7 +12,7 @@ namespace BankSimulation.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected ApplicationDbContext _db;
+        private ApplicationDbContext _db;
         internal DbSet<T> _dbSet;   
 
         public Repository(ApplicationDbContext db)
