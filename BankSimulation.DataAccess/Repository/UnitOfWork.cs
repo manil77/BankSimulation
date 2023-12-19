@@ -11,11 +11,12 @@ namespace BankSimulation.DataAccess.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _db;
+        public IUserRepository User { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
+            User = new UserRepository(_db);
         }
-        public IUserRepository _userRepository { get; private set; }
 
         public void Save()
         {

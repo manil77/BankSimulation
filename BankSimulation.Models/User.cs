@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -8,7 +9,8 @@ namespace BankSimulation.Models
     public class MinimumAgeAttribute : ValidationAttribute { 
         private readonly int _minimumAge;
 
-        public MinimumAgeAttribute(int minimumAge)        {
+        public MinimumAgeAttribute(int minimumAge)
+        {
             _minimumAge = minimumAge;
         }
 
@@ -25,28 +27,15 @@ namespace BankSimulation.Models
         }
 
     }
-    public class User
+    public class User:IdentityUser
     {
-        [Key]
-        public int AccountNumber { get; set; }
-
         [Required]
         [DisplayName("Account Holder Name")]
         public string Name{ get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
-        public string ContactNumber { get; set; }
-
         [MinimumAge(16, ErrorMessage ="Age should be atleast 16 years.")]
         public int Age { get; set; }
-
-        [Required]
-        public string Password { get; set; }
-        
+        public string? District{ get; set; }
+        public string? Address { get; set; }
         public decimal CurrentBalance { get; set; }
-
     }
 }

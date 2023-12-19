@@ -18,7 +18,13 @@ namespace BankSimulation.DataAccess.Data
         }
 
         //Add DBSets here
+        
         public DbSet<User> Users { get; set; }
         public DbSet<Transaction> Transactions{ get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);// Adds key to IdentityUser
+        }
     }
 }
