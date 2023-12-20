@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BankSimulation.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BankSimulation.DataAccess.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext<IdentityUser>
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { 
@@ -15,6 +18,13 @@ namespace BankSimulation.DataAccess.Data
         }
 
         //Add DBSets here
+        
+        public DbSet<User> Users { get; set; }
+        public DbSet<Transaction> Transactions{ get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);// Adds key to IdentityUser
+        }
     }
 }

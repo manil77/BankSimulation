@@ -8,7 +8,8 @@ namespace BankSimulation.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
-        IUserRepository _userRepository { get; }
+        IUserRepository User { get; }
+        ITransactionRepository Transaction { get; }
 
         void Save();
     }
