@@ -23,8 +23,6 @@ namespace BankSimulation.Controllers
         public IActionResult Index()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-
             var result = _unitOfWork.User.GetByFirstOrDefault(x => x.Id == userId);
             ViewBag.CurrentBalance = result.CurrentBalance;
 

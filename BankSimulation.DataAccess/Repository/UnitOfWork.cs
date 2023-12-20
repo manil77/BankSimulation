@@ -12,10 +12,14 @@ namespace BankSimulation.DataAccess.Repository
     {
         private ApplicationDbContext _db;
         public IUserRepository User { get; private set; }
+
+        public ITransactionRepository Transaction { get; private set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             User = new UserRepository(_db);
+            Transaction = new TransactionRepository(_db);
         }
 
         public void Save()

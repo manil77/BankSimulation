@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankSimulation.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace BankSimulation.DataAccess.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface ITransactionRepository : IRepository<Transaction>
     {
-        IUserRepository User { get; }
-        ITransactionRepository Transaction { get; }
-
+        void Update(Transaction transaction);
         void Save();
     }
 }
